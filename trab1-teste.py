@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum, auto
 import sys
-from fila_arranjo import Fila
+from aa import Fila
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
         sys.exit(1)
 
     demandas = le_arquivo(sys.argv[1])
-    f = fila()
+    f = Fila()
     for demanda in demandas:
         if demanda.tipo == Tipo.GERAL:
             f.enfileira_geral()

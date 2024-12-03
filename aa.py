@@ -14,7 +14,7 @@ class no:
         self.prioridade : int = prioridade
         self.pulado : int = 0
 
-class fila:
+class Fila:
     def __init__(self):
         self.inicio : no | None = no(item(None))
         self.fim : no | None = no(item(None))
@@ -27,16 +27,41 @@ class fila:
     def vazia(self):
         return self.tamanho == 0
 
-    def enfileira(self, x : item):  # Insire no fim, FILO
-        novo = no(x)
+    # def enfileira_geral(self, x : item):  # Insire no fim, FILO
+    #     novo = no(x)
+    #     novo.ant = self.fim.ant
+    #     novo.prox = self.fim
+    #     self.fim.ant.prox = novo
+    #     self.fim.ant = novo
+    #     self.tamanho += 1
+
+    # def enfileira_prioridade(self, x : item):
+    #     novo = no(x,1)
+    #     p = self.obtem_fim()
+        
+    #     if p.prioridade == 0 and p.pulado < 2:
+    #         if p.ant.prioridade == 0 and p.ant.pulado < 2:
+                
+    #             i = self.obtem_indice(p.ant)
+    #         else:
+    #             i = self.obtem_indice(p)
+
+    #         self.insere_pos(novo, i)
+    
+    #     else:
+    #         self.insere_pos(novo, self.tamanho)
+
+    def enfileira_geral(self):
+        novo = no(item(self.tamanho))
         novo.ant = self.fim.ant
         novo.prox = self.fim
         self.fim.ant.prox = novo
         self.fim.ant = novo
         self.tamanho += 1
 
-    def enfileira_prioridade(self, x : item):
-        novo = no(x,1)
+
+    def enfileira_prioritaria(self):
+        novo = no(item(self.tamanho),1)
         p = self.obtem_fim()
         
         if p.prioridade == 0 and p.pulado < 2:
@@ -50,8 +75,6 @@ class fila:
     
         else:
             self.insere_pos(novo, self.tamanho)
-
-
 
     def desenfileira(self):         # Retira do inicio, FILO
         if self.vazia():
@@ -77,7 +100,7 @@ class fila:
             raise ValueError("Fila Vazia")
         
         else:
-            return self.fim.ant
+            return self.fim.ant.dado
         
     def mostra_fila(self):
         ''' Mostra os elementos da fila em um arranjo
@@ -118,11 +141,13 @@ class fila:
         ptr.ant = novo
 
 
-    def obtem_indice(self, x : item):
-        ptr = self.primeiro
+    def obtem_indice(self, x : int):
+        ptr = self.inicio
         j = 0
-        while (j < self.tamanho) and (ptr.prox.dado != x):
+        while (ptr.prox != None):
+            if ptr.dado.valor == x:
+                return j
             ptr = ptr.prox
             j += 1
-        
+            print(ptr)
         return j
