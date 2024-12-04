@@ -91,7 +91,7 @@ class Fila:
             raise ValueError("FIla Vazia")
 
         else:
-            return self.inicio.prox.dado
+            return self.inicio.prox
         
     def obtem_fim(self):
         ''' 
