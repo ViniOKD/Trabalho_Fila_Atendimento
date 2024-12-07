@@ -103,6 +103,39 @@ class fila:
         False
         >>> f.mostra_fila()
         [3, 4, 1, 2, 6, 5]
+        >>> f2 = fila()
+        >>> f2.vazia()
+        True
+        >>> f2.enfileira_prioritaria()
+        1
+        >>> f2.enfileira_geral()
+        2
+        >>> f2.enfileira_geral()
+        3
+        >>> f2.enfileira_prioritaria()
+        4
+        >>> f2.enfileira_geral()
+        5
+        >>> f2.enfileira_prioritaria()
+        6
+        >>> f2.vazia()
+        False
+        >>> f2.obtem_primeiro()
+        1
+        >>> f2.mostra_fila()
+        [1, 4, 2, 6, 3, 5]
+        >>> f2.desenfileira()
+        1
+        >>> f2.mostra_fila()
+        [4, 2, 6, 3, 5]
+        >>> f2.desenfileira()
+        4
+        >>> f2.desenfileira()
+        2
+        >>> f2.enfileira_prioritaria()
+        7
+        >>> f2.mostra_fila()
+        [6, 3, 7, 5]
         '''
         novo = no(item(self.contador), 2)
         p = self.ultimo
@@ -199,7 +232,7 @@ class fila:
         >>> f.obtem_primeiro()
         4
         '''
-        return deepcopy(self.primeiro.prox.dado.valor)
+        return self.primeiro.prox.dado.valor
     
     def obtem_ultimo(self):
         ''' Função que retorna o ultimo elemento de uma fila:
@@ -228,7 +261,7 @@ class fila:
         >>> f.obtem_ultimo()
         5
         '''
-        return deepcopy(self.ultimo.dado.valor)
+        return self.ultimo.dado.valor
 
     def mostra_fila(self):
         ''' Mostra os elementos da fila em um arranjo
