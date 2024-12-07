@@ -21,6 +21,7 @@ class fila:
         self.primeiro.ant = None
         self.ultimo = None
         self.tamanho = 0
+        self.contador = 1
 
     def vazia(self):
         ''' Função que verifica se uma fila está vazia e retorna True para vazia e False para não vazia
@@ -62,7 +63,7 @@ class fila:
         >>> f.mostra_fila()
         [1, 4, 2, 6, 3, 5]
         '''
-        novo = no(item(self.tamanho + 1))
+        novo = no(item(self.contador))
 
         if self.vazia():
             self.primeiro.prox = novo
@@ -76,6 +77,7 @@ class fila:
         self.primeiro.ant = novo   
         self.ultimo = novo
         self.tamanho += 1
+        self.contador += 1
         return novo.dado.valor
 
     def enfileira_prioritaria(self):
@@ -102,7 +104,7 @@ class fila:
         >>> f.mostra_fila()
         [3, 4, 1, 2, 6, 5]
         '''
-        novo = no(item(self.tamanho + 1), 2)
+        novo = no(item(self.contador), 2)
         p = self.ultimo
         if not self.vazia():
             if p.prioridade == 1 and p.cont < 2:
@@ -133,6 +135,7 @@ class fila:
             
         
         self.tamanho += 1
+        self.contador += 1
         return novo.dado.valor
         
     def desenfileira(self):
@@ -162,7 +165,7 @@ class fila:
         ptr.prox = None
         ptr.ant = None 
         self.tamanho -= 1
-
+        
         return ptr.dado.valor
         
     def obtem_primeiro(self):
