@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from copy import deepcopy
+
 
 @dataclass
 class item:
@@ -62,6 +62,34 @@ class fila:
         False
         >>> f.mostra_fila()
         [1, 4, 2, 6, 3, 5]
+        >>> f.desenfileira()
+        1
+        >>> f.desenfileira()
+        4
+        >>> f.desenfileira()
+        2
+        >>> f.desenfileira()
+        6
+        >>> f.enfileira_prioritaria()
+        7
+        >>> f.enfileira_prioritaria()
+        8
+        >>> f.enfileira_geral()
+        9
+        >>> f.mostra_fila()
+        [3, 7, 5, 8, 9]
+        >>> f.desenfileira()
+        3
+        >>> f.desenfileira()
+        7
+        >>> f.desenfileira()
+        5
+        >>> f.desenfileira()
+        8
+        >>> f.desenfileira()
+        9
+        >>> f.vazia()
+        True
         '''
         novo = no(item(self.contador))
 
@@ -158,6 +186,13 @@ class fila:
                     p.ant = novo
 
                     novo.prox.cont += 1
+
+            else:
+                self.ultimo.prox = novo
+                novo.ant = self.ultimo
+                novo.prox = self.primeiro    
+                self.primeiro.ant = novo   
+                self.ultimo = novo
                 
         else:
             self.primeiro.prox = novo
@@ -165,7 +200,7 @@ class fila:
             novo.prox = self.primeiro    
             self.primeiro.ant = novo   
             self.ultimo = novo
-            
+        
         
         self.tamanho += 1
         self.contador += 1
